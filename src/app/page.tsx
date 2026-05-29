@@ -1,65 +1,146 @@
-import Image from "next/image";
+import type { Metadata } from "next"
+import { Hero } from "@/components/sections/Hero"
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup"
+import { BlogGrid } from "@/components/sections/BlogGrid"
+import { ProductGrid } from "@/components/sections/ProductGrid"
+import { products, blogPosts, routines } from "@/lib/data"
+import Link from "next/link"
+import { Badge } from "@/components/ui/Badge"
+import { ChevronRight, Sparkles, ArrowRight } from "lucide-react"
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Premium Wellness Affiliate Platform",
+  description:
+    "Lumivra helps you improve sleep, energy, recovery, focus, and healthy aging with evidence-based content and premium recommendations.",
+}
+
+export default function HomePage() {
+  const featured = products.filter((product) => product.featured)
+  const latest = blogPosts.filter((post) => post.featured)
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <Hero />
+
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                title: "Top wellness picks this month",
+                text: "A refined shortlist of products I would actually keep in my own stack.",
+                href: "/comparisons",
+              },
+              {
+                title: "Trending products",
+                text: "What readers are asking about most right now — from sleep to longevity.",
+                href: "/comparisons",
+              },
+              {
+                title: "Featured wellness routines",
+                text: "Practical routines built around energy, recovery, and deep sleep.",
+                href: "/ai-tools",
+              },
+            ].map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group rounded-3xl bg-[var(--card)] border border-[var(--border)] p-5 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <Badge variant="green">Insight</Badge>
+                  <ChevronRight className="w-4 h-4 text-[var(--muted-foreground)] group-hover:text-[var(--accent-green)] transition-colors" />
+                </div>
+                <h3 className="text-lg font-semibold text-[var(--foreground)] mb-2">{item.title}</h3>
+                <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{item.text}</p>
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between gap-6 mb-8 flex-wrap">
+            <div>
+              <Badge variant="gold" className="mb-3">
+                Top picks this month
+              </Badge>
+              <h2 className="text-3xl font-bold text-[var(--foreground)] mb-2">
+                Best-in-class products, selected with care
+              </h2>
+              <p className="text-[var(--muted-foreground)] max-w-2xl">
+                Premium products, honest pros and cons, and a tone that feels more like a trusted advisor than a sales page.
+              </p>
+            </div>
+            <Link href="/comparisons" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-green)]">
+              View comparison hub <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <ProductGrid products={featured} />
         </div>
-      </main>
+      </section>
+
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <div>
+              <Badge variant="blue" className="mb-3">
+                Wellness routines
+              </Badge>
+              <h2 className="text-3xl font-bold text-[var(--foreground)] mb-3">
+                Structured routines for sleep, recovery, and energy
+              </h2>
+              <p className="text-[var(--muted-foreground)] mb-6">
+                These are simple systems I use myself. They are designed to be realistic, calm, and easy to fit into a busy week.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {routines.map((routine) => (
+                  <div key={routine.id} className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5">
+                    <p className="text-xs uppercase tracking-wider text-[var(--muted-foreground)] mb-2">
+                      {routine.duration} · {routine.difficulty}
+                    </p>
+                    <h3 className="font-semibold text-[var(--foreground)] mb-2">{routine.title}</h3>
+                    <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{routine.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6">
+              <div className="grid grid-cols-2 gap-3">
+                <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&h=500&fit=crop&auto=format&q=80" alt="Soft minimal bedroom with natural light" className="rounded-2xl h-48 w-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=600&h=500&fit=crop&auto=format&q=80" alt="Focused work desk with notebook and coffee" className="rounded-2xl h-48 w-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=500&fit=crop&auto=format&q=80" alt="Calm recovery and meditation scene" className="rounded-2xl h-48 w-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=500&fit=crop&auto=format&q=80" alt="Athletic energy and movement scene" className="rounded-2xl h-48 w-full object-cover" />
+              </div>
+              <div className="mt-5 flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
+                <Sparkles className="w-4 h-4 text-[var(--accent-green)]" /> Calm, intelligent, premium wellness editorial
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between gap-6 mb-8 flex-wrap">
+            <div>
+              <Badge variant="blue" className="mb-3">
+                Latest articles
+              </Badge>
+              <h2 className="text-3xl font-bold text-[var(--foreground)] mb-2">
+                Honest articles with a strong editorial point of view
+              </h2>
+            </div>
+            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-green)]">
+              Open blog <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <BlogGrid posts={latest} featured />
+        </div>
+      </section>
+
+      <NewsletterSignup />
     </div>
-  );
+  )
 }
