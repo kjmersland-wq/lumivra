@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Lumivra",
   },
   description:
-    "Evidence-based wellness research on sleep, energy, recovery, and healthy aging. Honest supplement reviews, protocols, and AI-powered recommendations — no fluff.",
+    "Evidence-based wellness research on sleep, energy, recovery, and healthy aging. Honest supplement reviews and practical protocols — no fluff.",
   keywords: [
     "wellness supplements",
     "sleep optimization",
@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} h-full antialiased`}>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" className={`${geistSans.variable} h-full antialiased`}>
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
       </head>

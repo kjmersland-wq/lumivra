@@ -33,7 +33,7 @@ export function NewsletterSignup({
           </div>
         ) : (
           <>
-            <div className="flex items-center gap-2 flex-1 bg-[var(--card)] border border-[var(--border)] rounded-xl px-3 py-2.5">
+            <div className="premium-surface hover-lift flex items-center gap-2 flex-1 bg-[var(--card)] border border-[var(--border)] rounded-xl px-3 py-2.5">
               <Mail className="w-4 h-4 text-[var(--muted-foreground)] shrink-0" />
               <input
                 type="email"
@@ -46,9 +46,9 @@ export function NewsletterSignup({
             </div>
             <button
               type="submit"
-              className="px-4 py-2.5 rounded-xl bg-[var(--accent-green)] text-white text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1.5 whitespace-nowrap"
+              className="btn-premium group shimmer-on-hover px-4 py-2.5 rounded-xl bg-[var(--accent-green)] text-white text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1.5 whitespace-nowrap shadow-lg shadow-[var(--accent-green)]/20"
             >
-              Subscribe <ArrowRight className="w-3.5 h-3.5" />
+              Subscribe <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
           </>
         )}
@@ -84,7 +84,7 @@ export function NewsletterSignup({
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <div className="flex items-center gap-2 flex-1 bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-3 shadow-sm">
+              <div className="premium-surface hover-lift flex items-center gap-2 flex-1 bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-3 shadow-sm">
                 <Mail className="w-4 h-4 text-[var(--muted-foreground)] shrink-0" />
                 <input
                   type="email"
@@ -97,9 +97,9 @@ export function NewsletterSignup({
               </div>
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-[var(--accent-green)] text-white font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                className="btn-premium group shimmer-on-hover px-6 py-3 rounded-xl bg-[var(--accent-green)] text-white font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-[var(--accent-green)]/20"
               >
-                Subscribe <ArrowRight className="w-4 h-4" />
+                Subscribe <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
             </form>
           )}

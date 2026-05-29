@@ -39,17 +39,17 @@ export default function HomePage() {
               {
                 title: "Featured wellness routines",
                 text: "Practical routines built around energy, recovery, and deep sleep.",
-                href: "/ai-tools",
+                href: "/blog",
               },
             ].map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
-                className="group rounded-3xl bg-[var(--card)] border border-[var(--border)] p-5 hover:shadow-lg transition-shadow"
+                className="group premium-surface hover-lift shimmer-on-hover rounded-3xl bg-[var(--card)] border border-[var(--border)] p-5 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center justify-between mb-3">
                   <Badge variant="green">Insight</Badge>
-                  <ChevronRight className="w-4 h-4 text-[var(--muted-foreground)] group-hover:text-[var(--accent-green)] transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-[var(--muted-foreground)] group-hover:text-[var(--accent-green)] group-hover:translate-x-1 transition-all" />
                 </div>
                 <h3 className="text-lg font-semibold text-[var(--foreground)] mb-2">{item.title}</h3>
                 <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{item.text}</p>
@@ -73,8 +73,8 @@ export default function HomePage() {
                 Premium products, honest pros and cons, and a tone that feels more like a trusted advisor than a sales page.
               </p>
             </div>
-            <Link href="/comparisons" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-green)]">
-              View comparison hub <ArrowRight className="w-4 h-4" />
+            <Link href="/comparisons" className="group inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-green)]">
+              View comparison hub <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
           <ProductGrid products={featured} />
@@ -96,7 +96,7 @@ export default function HomePage() {
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {routines.map((routine) => (
-                  <div key={routine.id} className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5">
+                  <div key={routine.id} className="premium-surface hover-lift rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5">
                     <p className="text-xs uppercase tracking-wider text-[var(--muted-foreground)] mb-2">
                       {routine.duration} · {routine.difficulty}
                     </p>
@@ -132,8 +132,8 @@ export default function HomePage() {
                 Honest articles with a strong editorial point of view
               </h2>
             </div>
-            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-green)]">
-              Open blog <ArrowRight className="w-4 h-4" />
+            <Link href="/blog" className="group inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-green)]">
+              Open blog <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
           <BlogGrid posts={latest} featured />

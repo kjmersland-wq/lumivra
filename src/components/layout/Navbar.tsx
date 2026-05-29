@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { Menu, X, Sun, Moon, Sparkles } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -14,12 +15,13 @@ const navLinks = [
   { href: "/aging", label: "Healthy Aging" },
   { href: "/comparisons", label: "Compare" },
   { href: "/blog", label: "Blog" },
-  { href: "/ai-tools", label: "AI Tools", highlight: true },
+  { href: "/faq", label: "FAQ", highlight: true },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -39,8 +41,8 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           scrolled
-            ? "nav-blur bg-white/80 dark:bg-[#111110]/80 border-b border-[var(--border)] shadow-sm"
-            : "bg-transparent"
+            ? "nav-blur bg-white dark:bg-[#0f100f] border-b border-[var(--border)] shadow-sm"
+            : "nav-blur bg-white dark:bg-[#0f100f] border-b border-[var(--border)] shadow-sm"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,31 +50,36 @@ export function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] flex items-center justify-center transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105">
+                <Sparkles className="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" />
               </div>
-              <span className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
+              <span className="text-xl font-semibold tracking-tight text-[var(--foreground)] dark:text-[#f8f8f2] transition-colors duration-200 group-hover:text-[var(--accent-green)]">
                 Lumivra
               </span>
             </Link>
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                    link.highlight
-                      ? "text-[var(--accent-green)] bg-[var(--accent-green)]/10 hover:bg-[var(--accent-green)]/20"
-                      : "text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]"
-                  )}
-                >
-                  {link.highlight && <Sparkles className="inline w-3 h-3 mr-1 mb-0.5" />}
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`)
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "link-underline px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                      isActive && "is-active",
+                      link.highlight
+                        ? "text-[var(--accent-green)] bg-[var(--accent-green)]/10 hover:bg-[var(--accent-green)]/20"
+                        : "text-[var(--foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] dark:text-white/95 dark:hover:text-white dark:font-semibold",
+                      isActive && !link.highlight && "bg-[var(--muted)]"
+                    )}
+                  >
+                    {link.highlight && <Sparkles className="inline w-3 h-3 mr-1 mb-0.5" />}
+                    {link.label}
+                  </Link>
+                )
+              })}
             </nav>
 
             {/* Right controls */}
@@ -80,7 +87,7 @@ export function Navbar() {
               {mounted && (
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="p-2 rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+                  className="p-2 rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors dark:text-[#e4e8dc] dark:hover:text-white"
                   aria-label="Toggle theme"
                 >
                   {theme === "dark" ? (
@@ -91,14 +98,14 @@ export function Navbar() {
                 </button>
               )}
               <Link
-                href="/ai-tools"
-                className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--accent-green)] text-white text-sm font-medium hover:opacity-90 transition-opacity"
+                href="/faq"
+                className="btn-premium hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--accent-green)] text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-lg shadow-[var(--accent-green)]/20"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                AI Tools
+                FAQ
               </Link>
               <button
-                className="lg:hidden p-2 rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+                className="lg:hidden p-2 rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors dark:text-[#e4e8dc] dark:hover:text-white"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
               >

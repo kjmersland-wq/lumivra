@@ -39,7 +39,7 @@ export function BlogCard({ post, variant = "default" }: BlogCardProps) {
 
   if (variant === "compact") {
     return (
-      <motion.article whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+      <motion.article whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="hover-lift">
         <Link
           href={`/blog/${post.slug}`}
           className="flex gap-4 group p-3 rounded-xl hover:bg-[var(--muted)] transition-colors"
@@ -71,7 +71,7 @@ export function BlogCard({ post, variant = "default" }: BlogCardProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="group bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow"
+        className="group premium-surface hover-lift shimmer-on-hover bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow"
       >
         <div className="grid md:grid-cols-2 gap-0">
           <div className="relative h-64 md:h-auto overflow-hidden">
@@ -107,9 +107,9 @@ export function BlogCard({ post, variant = "default" }: BlogCardProps) {
               </div>
               <Link
                 href={`/blog/${post.slug}`}
-                className="flex items-center gap-1.5 text-sm font-medium text-[var(--accent-green)] hover:gap-2.5 transition-all"
+                className="group/cta flex items-center gap-1.5 text-sm font-medium text-[var(--accent-green)] transition-all"
               >
-                Read article <ArrowRight className="w-3.5 h-3.5" />
+                Read article <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-1" />
               </Link>
             </div>
           </div>
@@ -125,7 +125,7 @@ export function BlogCard({ post, variant = "default" }: BlogCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -4 }}
-      className="group bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+      className="group premium-surface hover-lift shimmer-on-hover bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
     >
       <div className="relative h-48 overflow-hidden">
         <img
@@ -156,9 +156,9 @@ export function BlogCard({ post, variant = "default" }: BlogCardProps) {
         </p>
         <Link
           href={`/blog/${post.slug}`}
-          className="flex items-center gap-1.5 text-sm font-medium text-[var(--accent-green)] hover:gap-2.5 transition-all"
+          className="group/cta flex items-center gap-1.5 text-sm font-medium text-[var(--accent-green)] transition-all"
         >
-          Read more <ArrowRight className="w-3.5 h-3.5" />
+          Read more <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-1" />
         </Link>
       </div>
     </motion.article>

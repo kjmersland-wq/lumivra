@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Star, ThumbsUp, ThumbsDown, ExternalLink, Quote } from "lucide-react"
+import { Star, ThumbsUp, ThumbsDown, ArrowRight, Quote } from "lucide-react"
 import { Product } from "@/lib/types"
 import { Badge } from "./Badge"
 
@@ -37,7 +37,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
-        className="bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+        className="premium-surface hover-lift bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
       >
         <div className="relative h-36 overflow-hidden">
           <img
@@ -60,7 +60,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
             <div className="flex items-center gap-1">
               <Star className="w-3.5 h-3.5 text-[var(--accent-gold)] fill-[var(--accent-gold)]" />
               <span className="text-xs font-medium text-[var(--foreground)]">{product.rating}</span>
-              <span className="text-xs text-[var(--muted-foreground)]">({product.reviewCount.toLocaleString()})</span>
+              <span className="text-xs text-[var(--muted-foreground)]">({product.reviewCount.toLocaleString("en-US")})</span>
             </div>
             <span className="font-bold text-[var(--foreground)] text-sm">{product.price}</span>
           </div>
@@ -73,7 +73,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ duration: 0.25 }}
-      className="bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow"
+      className="premium-surface hover-lift shimmer-on-hover bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow"
     >
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
@@ -124,7 +124,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
           </div>
           <span className="text-sm font-medium text-[var(--foreground)]">{product.rating}</span>
           <span className="text-sm text-[var(--muted-foreground)]">
-            ({product.reviewCount.toLocaleString()} reviews)
+            ({product.reviewCount.toLocaleString("en-US")} reviews)
           </span>
         </div>
 
@@ -185,12 +185,10 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
         {/* CTA */}
         <Link
           href={product.affiliateUrl}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-          className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--accent-green)] text-white text-sm font-medium rounded-xl hover:opacity-90 transition-opacity"
+          className="btn-premium group w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--accent-green)] text-white text-sm font-medium rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-[var(--accent-green)]/20"
         >
-          Check Price
-          <ExternalLink className="w-3.5 h-3.5" />
+          View Details
+          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>
     </motion.article>

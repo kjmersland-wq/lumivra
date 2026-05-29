@@ -17,6 +17,7 @@ export function Hero() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f0f7f3] via-[#fafaf9] to-[#f0f4ff] dark:from-[#0d1a12] dark:via-[#111110] dark:to-[#0d1020]" />
+        <div className="absolute inset-0 dark:bg-black/35" />
         <motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -53,7 +54,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[var(--foreground)] leading-tight mb-6"
+          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0b1016] dark:text-[#f8faf6] leading-tight mb-6"
         >
           Live Brighter.{" "}
           <span className="gradient-text">Age Smarter.</span>
@@ -64,7 +65,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl text-[var(--muted-foreground)] max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl text-[#344054] dark:text-[#dbe3d2] max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           I&apos;ve spent four years testing supplements, tracking sleep, and reading the science so you don&apos;t have to. Here&apos;s everything I&apos;ve learned about energy, recovery, focus, and living well for longer.
         </motion.p>
@@ -77,18 +78,18 @@ export function Hero() {
           className="flex flex-col sm:flex-row gap-3 justify-center mb-16"
         >
           <Link
-            href="/ai-tools"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--accent-green)] text-white font-medium hover:opacity-90 transition-opacity shadow-lg shadow-[var(--accent-green)]/20"
+            href="/comparisons"
+            className="btn-premium inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--accent-green)] text-white font-medium hover:opacity-90 transition-opacity shadow-lg shadow-[var(--accent-green)]/20"
           >
             <Sparkles className="w-4 h-4" />
-            Try AI Wellness Tools
+            Explore Top Picks
           </Link>
           <Link
             href="/blog"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--muted)] text-[var(--foreground)] font-medium border border-[var(--border)] hover:bg-[var(--border)] transition-colors"
+            className="btn-premium group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--muted)] text-[var(--foreground)] font-medium border border-[var(--border)] hover:bg-[var(--border)] transition-colors"
           >
             Read the Research
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </motion.div>
 
@@ -101,8 +102,8 @@ export function Hero() {
         >
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-2xl font-bold text-[var(--foreground)]">{stat.value}</div>
-              <div className="text-xs text-[var(--muted-foreground)] mt-0.5">{stat.label}</div>
+              <div className="text-2xl font-bold text-[#0b1016] dark:text-[#f8faf6]">{stat.value}</div>
+              <div className="text-xs text-[#4a5565] dark:text-[#d0d7c4] mt-0.5">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -144,7 +145,7 @@ export function Hero() {
             <Link
               key={card.href}
               href={card.href}
-              className={`group relative overflow-hidden rounded-2xl ${card.tall ? "sm:row-span-1" : ""}`}
+              className={`group hover-lift shimmer-on-hover relative overflow-hidden rounded-2xl ${card.tall ? "sm:row-span-1" : ""}`}
             >
               <div className="relative h-52 sm:h-64 overflow-hidden">
                 <img
